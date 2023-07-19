@@ -1,22 +1,19 @@
 package sg.edu.rp.c346.id22013834.demoandroidlist;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
+import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     ListView lvAndroidVersions;
     ArrayList<AndroidVersion> alAndroidVersions;
-    ArrayAdapter<AndroidVersion> aaAndroidVersions;
+    CustomAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         lvAndroidVersions = findViewById(R.id.listViewAndroidVersions);
         alAndroidVersions = new ArrayList<>();
 
@@ -28,13 +25,7 @@ public class MainActivity extends AppCompatActivity {
         alAndroidVersions.add(item2);
         alAndroidVersions.add(item3);
 
-
-        aaAndroidVersions = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, alAndroidVersions);
-
-        lvAndroidVersions.setAdapter(aaAndroidVersions);
-
-
+        adapter = new CustomAdapter(this, R.layout.row, alAndroidVersions);
+        lvAndroidVersions.setAdapter(adapter);
     }
-
 }
